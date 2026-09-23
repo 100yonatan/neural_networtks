@@ -7,7 +7,7 @@ Matrix ReLU::forward(const Matrix& input)
 	Matrix result(input.rows(), input.cols());
 
 	for (size_t i = 0; i < input.size(); i++) {
-		if (m_input_cache[i] > 0.0f)
+		if (input[i] > 0.0f)
 			result[i] = input[i];
 	}
 
