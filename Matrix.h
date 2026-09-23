@@ -15,11 +15,19 @@ public:
 
 	float& operator()(size_t r, size_t c);
 	float operator()(size_t r, size_t c) const;
+	float& operator[](size_t index);
+	const float& operator[](size_t index) const;
+	float* data() { return m_data.data(); }
+	const float* data() const { return m_data.data(); }
 	Matrix operator+(const Matrix& other) const;
 	Matrix operator*(const Matrix& other) const;
+	Matrix operator=(const Matrix& other);
 	Matrix transpose() const;
 
 	size_t rows() const { return m_rows; }
 	size_t cols() const { return m_cols; }
+	size_t size() const { return m_rows * m_cols; }
+
+	void add_bias(const Matrix& bias);
 };
 

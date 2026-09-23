@@ -51,6 +51,32 @@ Matrix Matrix::operator*(const Matrix& other) const
 	return result;
 }
 
+Matrix Matrix::operator=(const Matrix& other)
+{
+	if (this != &other) {
+		Matrix temp(other);
+
+		std::swap(m_rows, temp.m_rows);
+		std::swap(m_cols, temp.m_cols);
+		std::swap(m_data, temp.m_data);
+	}
+	return *this;
+}
+
+float& Matrix::operator[](size_t index) {
+	if (index >= m_data.size())
+		throw std::out_of_range("Matrix index out of bounds!");
+
+	return m_data[index];
+}
+
+const float& Matrix::operator[](size_t index) const {
+	if (index >= m_data.size())
+		throw std::out_of_range("Matrix index out of bounds!");
+
+	return m_data[index];
+}
+
 Matrix Matrix::transpose() const
 {
 	Matrix result(this->m_cols, this->m_rows);
@@ -61,4 +87,14 @@ Matrix Matrix::transpose() const
 	}
 
 	return result;
+}
+
+void Matrix::add_bias(const Matrix& bias) {
+	if (bias.rows() != 1 || bias.cols() != this->m_cols)
+		throw std::invalid_argument("bias must be 1 row and same coloms");
+	for (size_t r = 0; r < m_rows; r++) {
+		for (size_t c = 0; c < m_cols; c++) {
+			(*this)(r, c) += bias(0, c);
+		}
+	}
 }
