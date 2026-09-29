@@ -30,6 +30,12 @@
     <ClInclude Include="Sigmoid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MSELoss.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sequential.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Matrix.cpp">
@@ -45,6 +51,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sigmoid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MSELoss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sequential.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

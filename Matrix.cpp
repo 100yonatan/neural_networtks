@@ -51,14 +51,34 @@ Matrix Matrix::operator*(const Matrix& other) const
 	return result;
 }
 
-Matrix Matrix::operator=(const Matrix& other)
+Matrix& Matrix::operator=(const Matrix& other)
 {
 	if (this != &other) {
-		Matrix temp(other);
+		m_rows = other.m_rows;
+		m_cols = other.m_cols;
+		m_data = other.m_data;
+	}
+	return *this; 
+}
 
-		std::swap(m_rows, temp.m_rows);
-		std::swap(m_cols, temp.m_cols);
-		std::swap(m_data, temp.m_data);
+Matrix::Matrix(Matrix&& other) noexcept
+	: m_rows(other.m_rows),
+	m_cols(other.m_cols),
+	m_data(std::move(other.m_data))
+{
+	other.m_rows = 0;
+	other.m_cols = 0;
+}
+
+Matrix& Matrix::operator=(Matrix&& other) noexcept
+{
+	if (this != &other) {
+		m_rows = other.m_rows;
+		m_cols = other.m_cols;
+		m_data = std::move(other.m_data);
+
+		other.m_rows = 0;
+		other.m_cols = 0;
 	}
 	return *this;
 }

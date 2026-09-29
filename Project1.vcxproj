@@ -127,14 +127,18 @@
     <ClInclude Include="Dense.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="MSELoss.h" />
     <ClInclude Include="ReLU.h" />
+    <ClInclude Include="Sequential.h" />
     <ClInclude Include="Sigmoid.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Dense.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
+    <ClCompile Include="MSELoss.cpp" />
     <ClCompile Include="ReLU.cpp" />
+    <ClCompile Include="Sequential.cpp" />
     <ClCompile Include="Sigmoid.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -31,8 +31,8 @@ Matrix Dense::backward(const Matrix& output_grad, float learning_rate)
 	Matrix grad_weights = m_input_cache.transpose() * output_grad;
 	Matrix grad_biases(1, output_grad.cols(), 0.0f);
 
-	for (size_t r = 0; r < output_grad.cols(); r++) {
-		for (size_t c = 0; c < output_grad.rows(); c++) {
+	for (size_t r = 0; r < output_grad.rows(); r++) {
+		for (size_t c = 0; c < output_grad.cols(); c++) {
 			grad_biases(0, c) += output_grad(r, c);
 		}
 	}
