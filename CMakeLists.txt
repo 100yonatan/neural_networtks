@@ -1,5 +1,10 @@
 cmake_minimum_required(VERSION 3.29)
 
+# Resource compiler from conda:llvm-tools, so no Visual Studio dev shell is needed for rc.exe.
+if(CMAKE_HOST_WIN32 AND NOT DEFINED CMAKE_RC_COMPILER)
+  set(CMAKE_RC_COMPILER llvm-rc)
+endif()
+
 project(neural_networks LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 23)

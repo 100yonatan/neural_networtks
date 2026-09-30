@@ -1,7 +1,10 @@
 [tools]
 cmake = "4.4.3"
 ninja = "1.13.2"
+make = "4.4.1"
 "conda:clangxx" = "23.1.2"
 "conda:lld" = "23.1.2"
 "conda:clang-format" = "23.1.2"
 "conda:clang-tools" = "23.1.2"
+# llvm-rc: CMake needs a resource compiler for clang on Windows.
+"conda:llvm-tools" = { version = "23.1.2", os = ["windows"] }
