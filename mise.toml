@@ -1,0 +1,7 @@
+[tools]
+cmake = "4.4.3"
+ninja = "1.13.2"
+"conda:clangxx" = "23.1.2"
+"conda:lld" = "23.1.2"
+"conda:clang-format" = "23.1.2"
+"conda:clang-tools" = "23.1.2"

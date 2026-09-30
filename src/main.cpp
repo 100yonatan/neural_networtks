@@ -1,31 +1,30 @@
-#include <iostream>
-#include <iomanip>
-#include <memory>
-#include <vector>
-#include <random>
 #include <algorithm>
 #include <cmath>
+#include <iomanip>
+#include <iostream>
+#include <memory>
+#include <random>
 #include <string>
+#include <vector>
 
-#include "Matrix.h"
 #include "Dense.h"
-#include "Sigmoid.h"
-#include "ReLU.h"
 #include "MSELoss.h"
+#include "Matrix.h"
+#include "ReLU.h"
 #include "Sequential.h"
-
-
+#include "Sigmoid.h"
 
 // Struct to hold metadata and binary bit representations
 struct Sample {
     int a;
     int b;
     int expected_xor;
-    std::vector<float> input_bits;   // 8 bits: [a3, a2, a1, a0, b3, b2, b1, b0]
-    std::vector<float> output_bits;  // 4 bits: [c3, c2, c1, c0]
+    std::vector<float> input_bits;  // 8 bits: [a3, a2, a1, a0, b3, b2, b1, b0]
+    std::vector<float> output_bits; // 4 bits: [c3, c2, c1, c0]
 };
 
-int main() {
+int main()
+{
     // -------------------------------------------------------------
     // 1. Generate All 256 Pairs of 4-bit Numbers (0 to 15)
     // -------------------------------------------------------------
@@ -69,7 +68,7 @@ int main() {
     std::mt19937 rng(42);
     std::shuffle(dataset.begin(), dataset.end(), rng);
 
-    const size_t train_size = 50; // 80% of 256
+    const size_t train_size = 50;                        // 80% of 256
     const size_t test_size = total_samples - train_size; // 51 samples (20%)
 
     Matrix X_train(train_size, 8);
@@ -138,8 +137,8 @@ int main() {
 
         // Print training loss periodically
         if (epoch % 1500 == 0 || epoch == 1) {
-            std::cout << "Epoch " << std::setw(5) << epoch
-                << " | Training Loss: " << std::fixed << std::setprecision(6) << loss << std::endl;
+            std::cout << "Epoch " << std::setw(5) << epoch << " | Training Loss: " << std::fixed
+                      << std::setprecision(6) << loss << std::endl;
         }
     }
 
@@ -152,20 +151,19 @@ int main() {
 
     Matrix test_predictions = model.forward(X_test);
     float test_loss = criterion.forward(test_predictions, Y_test);
-    std::cout << "Final Test Set MSE Loss: " << std::fixed << std::setprecision(6) << test_loss << "\n" << std::endl;
+    std::cout << "Final Test Set MSE Loss: " << std::fixed << std::setprecision(6) << test_loss << "\n"
+              << std::endl;
 
     int total_bits = 0;
     int correct_bits = 0;
     int fully_correct_numbers = 0;
 
-    std::cout << std::left
-        << std::setw(15) << "A ^ B (Dec)"
-        << std::setw(16) << "A ^ B (Bin)"
-        << std::setw(16) << "Expected (Bin)"
-        << std::setw(16) << "Predicted (Bin)"
-        << std::setw(14) << "Pred (Dec)"
-        << "Result" << std::endl;
-    std::cout << "----------------------------------------------------------------------------------" << std::endl;
+    std::cout << std::left << std::setw(15) << "A ^ B (Dec)" << std::setw(16) << "A ^ B (Bin)"
+              << std::setw(16) << "Expected (Bin)" << std::setw(16) << "Predicted (Bin)" << std::setw(14)
+              << "Pred (Dec)"
+              << "Result" << std::endl;
+    std::cout << "----------------------------------------------------------------------------------"
+              << std::endl;
 
     for (size_t i = 0; i < test_size; ++i) {
         size_t idx = train_size + i;
@@ -198,8 +196,7 @@ int main() {
             total_bits++;
             if (pred_bit == target_bit) {
                 correct_bits++;
-            }
-            else {
+            } else {
                 all_bits_match = false;
             }
         }
@@ -211,13 +208,9 @@ int main() {
         std::string dec_str = std::to_string(a_val) + " ^ " + std::to_string(b_val);
         std::string bin_str = a_bin + " ^ " + b_bin;
 
-        std::cout << std::left
-            << std::setw(15) << dec_str
-            << std::setw(16) << bin_str
-            << std::setw(16) << target_bin
-            << std::setw(16) << pred_bin
-            << std::setw(14) << predicted_dec
-            << (all_bits_match ? "[PASS]" : "[FAIL]") << std::endl;
+        std::cout << std::left << std::setw(15) << dec_str << std::setw(16) << bin_str << std::setw(16)
+                  << target_bin << std::setw(16) << pred_bin << std::setw(14) << predicted_dec
+                  << (all_bits_match ? "[PASS]" : "[FAIL]") << std::endl;
     }
 
     // -------------------------------------------------------------
@@ -230,8 +223,10 @@ int main() {
     std::cout << "                     Overall Test Metrics                       " << std::endl;
     std::cout << "================================================================" << std::endl;
     std::cout << "Total Test Samples Evaluated: " << test_size << std::endl;
-    std::cout << "Individual Bit Accuracy:      " << std::fixed << std::setprecision(2) << bit_accuracy << "%" << std::endl;
-    std::cout << "Full 4-Bit Number Accuracy:   " << std::fixed << std::setprecision(2) << number_accuracy << "%" << std::endl;
+    std::cout << "Individual Bit Accuracy:      " << std::fixed << std::setprecision(2) << bit_accuracy << "%"
+              << std::endl;
+    std::cout << "Full 4-Bit Number Accuracy:   " << std::fixed << std::setprecision(2) << number_accuracy
+              << "%" << std::endl;
 
     return 0;
 }

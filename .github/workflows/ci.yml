@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  build-test:
+    name: ${{ matrix.os }} / ${{ matrix.preset }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        preset: [debug, release]
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v5
+      - uses: jdx/mise-action@v3
+        with:
+          add_shims_to_path: false
+      - if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+      - if: runner.os == 'Windows'
+        run: choco install make -y --no-progress
+      # mise does not expose conda's Library/bin on Windows; add it to PATH.
+      - if: runner.os == 'Windows'
+        run: |
+          for t in conda:clangxx conda:lld conda:clang-format conda:clang-tools; do
+            cygpath -w "$(mise where $t)/Library/bin" >> "$GITHUB_PATH"
+          done
+      - run: make test PRESET=${{ matrix.preset }}
