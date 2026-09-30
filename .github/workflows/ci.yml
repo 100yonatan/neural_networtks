@@ -26,11 +26,10 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - if: runner.os == 'Windows'
         run: choco install make -y --no-progress
-      # mise does not expose conda's Library/bin on Windows; put the real binaries ahead of its shims.
+      # mise does not expose conda's Library/bin on Windows; add it to PATH.
       - if: runner.os == 'Windows'
         run: |
           for t in conda:clangxx conda:lld conda:clang-format conda:clang-tools; do
             cygpath -w "$(mise where $t)/Library/bin" >> "$GITHUB_PATH"
           done
-      - run: which -a clang++ ninja cmake
       - run: make test PRESET=${{ matrix.preset }}

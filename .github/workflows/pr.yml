@@ -20,9 +20,4 @@ jobs:
       - uses: jdx/mise-action@v3
         with:
           add_shims_to_path: false
-      - run: make lint PRESET=debug || true
-      - run: |
-          RD=$(clang++ -print-resource-dir)
-          ls "$(dirname $(which clang++))" | grep -i cfg || true
-          cat "$(dirname $(which clang++))"/*.cfg 2>/dev/null || true
-          clang-tidy -p build/debug src/ReLU.cpp --extra-arg=-resource-dir=$RD --extra-arg=--no-default-config 2>&1 | grep -E 'error' | head
+      - run: make lint PRESET=debug

@@ -23,8 +23,13 @@ format:
 format-check:
 	clang-format --dry-run --Werror $(SOURCES)
 
+# clang-tidy ships separately from clang++, so point it at clang++'s builtin headers.
+# --no-default-config: mise's conda shims wrap clang's .cfg file in a shell script, which clang would parse as flags.
 lint: configure
-	clang-tidy -p build/$(PRESET) --extra-arg=-resource-dir=$(shell clang++ -print-resource-dir) $(filter %.cpp,$(SOURCES))
+	clang-tidy -p build/$(PRESET) \
+		--extra-arg=-resource-dir=$(shell clang++ -print-resource-dir) \
+		--extra-arg=--no-default-config \
+		$(filter %.cpp,$(SOURCES))
 
 clean:
 	cmake -E rm -rf build
