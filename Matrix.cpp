@@ -1,4 +1,6 @@
 #include "Matrix.h"
+
+#include <fstream>
 #include <stdexcept>
 
 
@@ -107,6 +109,32 @@ Matrix Matrix::transpose() const
 	}
 
 	return result;
+}
+
+void Matrix::save(std::ofstream& out) const
+{
+	uint64_t rows = static_cast<uint64_t>(m_rows);
+	uint64_t cols = static_cast<uint64_t>(m_cols);
+
+	out.write(reinterpret_cast<const char*>(&rows), sizeof(rows));
+	out.write(reinterpret_cast<const char*>(&cols), sizeof(cols));
+
+	out.write(reinterpret_cast<const char*>(m_data.data()), sizeof(float) * m_data.size());
+}
+
+void Matrix::load(std::ifstream& in)
+{
+	uint64_t rows = 0;
+	uint64_t cols = 0;
+
+	in.read(reinterpret_cast<char*>(&rows), sizeof(rows));
+	in.read(reinterpret_cast<char*>(&cols), sizeof(cols));
+
+	m_rows = static_cast<size_t>(rows);
+	m_cols = static_cast<size_t>(cols);
+	m_data.resize(m_rows * m_cols);
+
+	in.read(reinterpret_cast<char*>(m_data.data()), sizeof(float) * m_data.size());
 }
 
 void Matrix::add_bias(const Matrix& bias) {

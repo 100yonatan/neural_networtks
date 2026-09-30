@@ -33,5 +33,8 @@ public:
 	size_t cols() const { return m_cols; }
 	size_t size() const { return m_rows * m_cols; }
 
+	void save(std::ofstream& out) const;
+	void load(std::ifstream& in);
+
 	void add_bias(const Matrix& bias);
 };
