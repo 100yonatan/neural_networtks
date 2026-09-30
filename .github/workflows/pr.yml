@@ -9,15 +9,20 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: mise x -- make format-check
+        with:
+          add_shims_to_path: false
+      - run: make format-check
 
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: mise x -- make lint PRESET=debug || true
+        with:
+          add_shims_to_path: false
+      - run: make lint PRESET=debug || true
       - run: |
-          mise x -- clang++ -print-resource-dir
-          head -c 1500 build/debug/compile_commands.json
-          mise x -- clang-tidy -p build/debug src/ReLU.cpp --extra-arg=-v 2>&1 | grep -vE 'warning|^ ' | head -40
+          RD=$(clang++ -print-resource-dir)
+          ls "$(dirname $(which clang++))" | grep -i cfg || true
+          cat "$(dirname $(which clang++))"/*.cfg 2>/dev/null || true
+          clang-tidy -p build/debug src/ReLU.cpp --extra-arg=-resource-dir=$RD --extra-arg=--no-default-config 2>&1 | grep -E 'error' | head

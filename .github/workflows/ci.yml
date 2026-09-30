@@ -20,6 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
+        with:
+          add_shims_to_path: false
       - if: runner.os == 'Windows'
         uses: ilammy/msvc-dev-cmd@v1
       - if: runner.os == 'Windows'
@@ -30,4 +32,5 @@ jobs:
           for t in conda:clangxx conda:lld conda:clang-format conda:clang-tools; do
             cygpath -w "$(mise where $t)/Library/bin" >> "$GITHUB_PATH"
           done
-      - run: mise x -- make test PRESET=${{ matrix.preset }}
+      - run: which -a clang++ ninja cmake
+      - run: make test PRESET=${{ matrix.preset }}
