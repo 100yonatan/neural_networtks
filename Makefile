@@ -24,7 +24,7 @@ format-check:
 	clang-format --dry-run --Werror $(SOURCES)
 
 lint: configure
-	clang-tidy -p build/$(PRESET) $(filter %.cpp,$(SOURCES))
+	clang-tidy -p build/$(PRESET) --extra-arg=-resource-dir=$(shell clang++ -print-resource-dir) $(filter %.cpp,$(SOURCES))
 
 clean:
 	cmake -E rm -rf build

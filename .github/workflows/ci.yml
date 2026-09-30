@@ -24,4 +24,4 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - if: runner.os == 'Windows'
         run: choco install make -y --no-progress
-      - run: make test PRESET=${{ matrix.preset }}
+      - run: mise x -- make test PRESET=${{ matrix.preset }}

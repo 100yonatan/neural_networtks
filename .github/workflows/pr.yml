@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: make format-check
+      - run: mise x -- make format-check
 
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: make lint PRESET=debug
+      - run: mise x -- make lint PRESET=debug
