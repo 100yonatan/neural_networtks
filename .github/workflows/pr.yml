@@ -20,4 +20,4 @@ jobs:
       - run: |
           mise x -- clang++ -print-resource-dir
           head -c 1500 build/debug/compile_commands.json
-          mise x -- clang-tidy -p build/debug src/ReLU.cpp 2>&1 | grep -v warning | head -30
+          mise x -- clang-tidy -p build/debug src/ReLU.cpp --extra-arg=-v 2>&1 | grep -vE 'warning|^ ' | head -40
