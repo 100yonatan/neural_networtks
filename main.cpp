@@ -69,7 +69,7 @@ int main() {
     std::mt19937 rng(42);
     std::shuffle(dataset.begin(), dataset.end(), rng);
 
-    const size_t train_size = 205; // 80% of 256
+    const size_t train_size = 50; // 80% of 256
     const size_t test_size = total_samples - train_size; // 51 samples (20%)
 
     Matrix X_train(train_size, 8);
@@ -117,7 +117,7 @@ int main() {
 
     MSELoss criterion;
 
-    const int epochs = 15000;
+    const int epochs = 10000;
     const float learning_rate = 0.5f;
 
     std::cout << "\nStarting Training Process..." << std::endl;
