@@ -2,10 +2,10 @@
 
 #include <memory>
 
-#include "Dense.h"
-#include "MSELoss.h"
-#include "Sequential.h"
-#include "Sigmoid.h"
+#include "nn/Dense.h"
+#include "nn/MSELoss.h"
+#include "nn/Sequential.h"
+#include "nn/Sigmoid.h"
 
 TEST_CASE("Sequential rejects null and empty use")
 {

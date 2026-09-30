@@ -1,7 +1,7 @@
 PRESET ?= release
-SOURCES := $(wildcard src/*.cpp src/*.h tests/*.cpp)
+SOURCES := $(wildcard include/nn/*.h src/*.cpp tests/*.cpp)
 
-.PHONY: all configure build test run format format-check lint clean
+.PHONY: all configure build test run format format-check lint clean new-class
 
 all: build
 
@@ -33,3 +33,6 @@ lint: configure
 
 clean:
 	cmake -E rm -rf build
+
+new-class:
+	cmake -DNAME=$(NAME) -P cmake/new_class.cmake

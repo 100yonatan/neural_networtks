@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Matrix.h"
-// #include "Layer.h"
+#include "nn/Matrix.h"
+// #include "nn/Layer.h"
 
 class MSELoss
 {

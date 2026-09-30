@@ -1,5 +1,5 @@
 #pragma once
-#include "Layer.h"
+#include "nn/Layer.h"
 class Sigmoid : public Layer
 {
 private:

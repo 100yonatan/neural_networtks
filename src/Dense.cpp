@@ -1,4 +1,4 @@
-#include "Dense.h"
+#include "nn/Dense.h"
 #include <cmath>
 #include <random>
 

@@ -23,10 +23,10 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
 endif()
 
-add_subdirectory(src)
+include(cmake/nn.cmake)
 
 option(NN_BUILD_TESTS "Build unit tests" ON)
 if(NN_BUILD_TESTS)
   enable_testing()
-  add_subdirectory(tests)
+  include(cmake/tests.cmake)
 endif()

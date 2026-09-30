@@ -1,4 +1,4 @@
-#include "MSELoss.h"
+#include "nn/MSELoss.h"
 #include <stdexcept>
 
 float MSELoss::forward(const Matrix& predictions, const Matrix& targets)

@@ -41,3 +41,8 @@ run = "make lint"
 [tasks.clean]
 description = "Remove build directory"
 run = "make clean"
+
+[tasks.new-class]
+description = "Create include/nn/<name>.h and src/<name>.cpp and register it in cmake/nn.cmake"
+usage = 'arg "<name>" help="Class name, e.g. Tanh"'
+run = "make new-class NAME=${usage_name}"

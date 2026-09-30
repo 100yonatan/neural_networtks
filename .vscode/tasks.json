@@ -5,8 +5,26 @@
       "label": "build debug",
       "type": "shell",
       "command": "make build PRESET=debug",
-      "group": { "kind": "build", "isDefault": true },
-      "problemMatcher": ["$gcc"]
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "new class",
+      "type": "shell",
+      "command": "mise run new-class ${input:className}",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "className",
+      "type": "promptString",
+      "description": "Class name (creates include/nn/<name>.h and src/<name>.cpp)"
     }
   ]
 }

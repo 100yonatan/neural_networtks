@@ -16,5 +16,5 @@ Checks: >
   -readability-math-missing-parentheses,
   -readability-convert-member-functions-to-static
 WarningsAsErrors: ''
-HeaderFilterRegex: '(^|/)(src|tests)/[^/]+\.h$'
+HeaderFilterRegex: '(^|/)include/nn/[^/]+\.h$'
 FormatStyle: file

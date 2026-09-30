@@ -1,4 +1,4 @@
-#include "ReLU.h"
+#include "nn/ReLU.h"
 
 Matrix ReLU::forward(const Matrix& input)
 {

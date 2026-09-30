@@ -1,4 +1,4 @@
-#include "Sigmoid.h"
+#include "nn/Sigmoid.h"
 #include <cmath>
 
 Matrix Sigmoid::forward(const Matrix& input)

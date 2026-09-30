@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Layer.h"
-#include "Matrix.h"
+#include "nn/Layer.h"
+#include "nn/Matrix.h"
 #include <memory>
 #include <vector>
 

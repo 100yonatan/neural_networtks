@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-#include "Matrix.h"
+#include "nn/Matrix.h"
 
 TEST_CASE("Matrix initializes with fill value")
 {

@@ -1,9 +1,9 @@
 #include <doctest/doctest.h>
 
-#include "Dense.h"
-#include "MSELoss.h"
-#include "ReLU.h"
-#include "Sigmoid.h"
+#include "nn/Dense.h"
+#include "nn/MSELoss.h"
+#include "nn/ReLU.h"
+#include "nn/Sigmoid.h"
 
 TEST_CASE("ReLU forward and backward")
 {

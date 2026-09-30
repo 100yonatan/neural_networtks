@@ -7,12 +7,12 @@
 #include <string>
 #include <vector>
 
-#include "Dense.h"
-#include "MSELoss.h"
-#include "Matrix.h"
-#include "ReLU.h"
-#include "Sequential.h"
-#include "Sigmoid.h"
+#include "nn/Dense.h"
+#include "nn/MSELoss.h"
+#include "nn/Matrix.h"
+#include "nn/ReLU.h"
+#include "nn/Sequential.h"
+#include "nn/Sigmoid.h"
 
 // Struct to hold metadata and binary bit representations
 struct Sample {

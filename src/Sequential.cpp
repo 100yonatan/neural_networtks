@@ -1,4 +1,4 @@
-#include "Sequential.h"
+#include "nn/Sequential.h"
 #include <stdexcept>
 
 void Sequential::add(std::unique_ptr<Layer> layer)
