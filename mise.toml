@@ -8,3 +8,36 @@ make = "4.4.1"
 "conda:clang-tools" = "23.1.2"
 # llvm-rc: CMake needs a resource compiler for clang on Windows.
 "conda:llvm-tools" = { version = "23.1.2", os = ["windows"] }
+
+# Thin wrappers over the Makefile; extra args pass through, e.g. `mise run test PRESET=debug`.
+[tasks.configure]
+description = "Configure CMake build"
+run = "make configure"
+
+[tasks.build]
+description = "Build the project"
+run = "make build"
+
+[tasks.test]
+description = "Build and run unit tests"
+run = "make test"
+
+[tasks.run]
+description = "Build and run the XOR experiment"
+run = "make run"
+
+[tasks.format]
+description = "Format sources with clang-format"
+run = "make format"
+
+[tasks.format-check]
+description = "Check formatting without changing files"
+run = "make format-check"
+
+[tasks.lint]
+description = "Run clang-tidy"
+run = "make lint"
+
+[tasks.clean]
+description = "Remove build directory"
+run = "make clean"
