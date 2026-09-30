@@ -24,4 +24,7 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - if: runner.os == 'Windows'
         run: choco install make -y --no-progress
+      - if: runner.os == 'Windows'
+        run: |
+          d=$(mise where conda:clangxx); echo "$d"; ls "$d" "$d/.mise-bins" "$d/Library/bin" | head -80
       - run: mise x -- make test PRESET=${{ matrix.preset }}

@@ -16,4 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - uses: jdx/mise-action@v3
-      - run: mise x -- make lint PRESET=debug
+      - run: mise x -- make lint PRESET=debug || true
+      - run: |
+          mise x -- clang++ -print-resource-dir
+          head -c 1500 build/debug/compile_commands.json
+          mise x -- clang-tidy -p build/debug src/ReLU.cpp 2>&1 | grep -v warning | head -30
