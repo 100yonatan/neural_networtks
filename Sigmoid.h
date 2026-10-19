@@ -11,4 +11,3 @@ public:
 	Matrix forward(const Matrix& input) override;
 	Matrix backward(const Matrix& output_grad, float learning_rate) override;
 };
-
