@@ -17,4 +17,7 @@ public:
 
     const Matrix& get_weights() const { return m_weights; }
     const Matrix& get_biases() const { return m_biases; }
+
+    void save(std::ofstream& out) const override;
+    void load(std::ifstream& in) override;
 };

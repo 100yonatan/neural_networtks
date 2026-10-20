@@ -10,4 +10,7 @@ public:
 
     Matrix forward(const Matrix& input) override;
     Matrix backward(const Matrix& output_grad, float learning_rate) override;
+
+    void save(std::ofstream& out) const override {}
+    void load(std::ifstream& in) override {}
 };

@@ -19,4 +19,7 @@ public:
     void add(std::unique_ptr<Layer> layer);
     Matrix forward(const Matrix& input);
     void backward(const Matrix& loss_grad, float learning_rate);
+
+    void save(const std::string& file_path) const;
+    void load(const std::string& file_path);
 };

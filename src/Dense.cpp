@@ -46,3 +46,15 @@ Matrix Dense::backward(const Matrix& output_grad, float learning_rate)
 
     return grad_input;
 }
+
+void Dense::save(std::ofstream& out) const
+{
+    m_weights.save(out);
+    m_biases.save(out);
+}
+
+void Dense::load(std::ifstream& in)
+{
+    m_weights.load(in);
+    m_biases.load(in);
+}

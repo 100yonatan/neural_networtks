@@ -1,5 +1,6 @@
 #include "nn/Sequential.h"
 #include <stdexcept>
+#include <fstream>
 
 void Sequential::add(std::unique_ptr<Layer> layer)
 {
@@ -36,4 +37,30 @@ void Sequential::backward(const Matrix& loss_grad, float learning_rate)
             current_grad = (*it)->backward(current_grad, learning_rate);
         }
     }
+}
+
+void Sequential::save(const std::string& file_path) const
+{
+    std::ofstream out(file_path, std::ios::binary);
+    if(!out.is_open())
+        throw std::runtime_error("Error: Could not open file for writing: " + file_path);
+
+    for (const auto& layer_ptr : m_layers) {
+        layer_ptr->save(out);
+    }
+    out.close();
+}
+
+void Sequential::load(const std::string& file_path)
+{
+    std::ifstream in(file_path, std::ios::binary);
+    if(!in.is_open())
+        throw std::runtime_error("Error: Could not open file for reading: " + file_path);
+
+    for (auto& layer_ptr : m_layers) {
+        if (layer_ptr != nullptr) {
+            layer_ptr->load(in);
+        }
+    }
+    in.close();
 }

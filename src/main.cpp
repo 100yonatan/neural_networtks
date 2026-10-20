@@ -6,6 +6,7 @@
 #include <random>
 #include <string>
 #include <vector>
+#include <filesystem>
 
 #include "nn/Dense.h"
 #include "nn/MSELoss.h"
