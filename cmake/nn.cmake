@@ -6,6 +6,7 @@ add_library(nn STATIC
   src/ReLU.cpp
   src/Sequential.cpp
   src/Sigmoid.cpp
+  src/Trainer.cpp
 )
 target_include_directories(nn PUBLIC ${PROJECT_SOURCE_DIR}/include)
 

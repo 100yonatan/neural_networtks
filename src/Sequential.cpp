@@ -62,5 +62,10 @@ void Sequential::load(const std::string& file_path)
             layer_ptr->load(in);
         }
     }
+
+    if (in.fail() && !in.eof()) {
+        throw std::runtime_error("Error: Corrupted or incomplete model file: " + file_path);
+    }
+
     in.close();
 }
