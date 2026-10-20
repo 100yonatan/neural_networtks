@@ -12,5 +12,7 @@ class Trainer {
     int m_epochs;
 
 public:
-    Trainer();
+    Trainer(Sequential& model, MSELoss& criterion, float learning_rate, int epochs);
+    void train(const Matrix& X_train, const Matrix& Y_train);
+    void evaluate(const Matrix& X_test, const Matrix& Y_test);
 };
