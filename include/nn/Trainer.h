@@ -5,7 +5,7 @@
 #include "Matrix.h"
 
 class Trainer {
-    private:
+private:
     Sequential& m_model;
     MSELoss& m_criterion;
     float m_learning_rate;

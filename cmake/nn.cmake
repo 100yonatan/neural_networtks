@@ -8,7 +8,10 @@ add_library(nn STATIC
   src/Sigmoid.cpp
   src/Trainer.cpp
 )
-target_include_directories(nn PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(nn PUBLIC
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/include/nn
+)
 
 if(MSVC)
   target_compile_options(nn PUBLIC /W4 /permissive-)
