@@ -1,12 +1,14 @@
 {
   "cmake.useCMakePresets": "always",
   "cmake.configureOnOpen": true,
+  "cmake.configurePreset": "debug",
   "cmake.copyCompileCommands": "${workspaceFolder}/compile_commands.json",
   "clangd.path": "clangd",
   "clangd.arguments": [
-    "--compile-commands-dir=${workspaceFolder}",
+    "--compile-commands-dir=${workspaceFolder}/build/debug",
     "--clang-tidy=false",
-    "--header-insertion=never"
+    "--header-insertion=never",
+    "--fallback-flags=-std=c++23"
   ],
   "C_Cpp.intelliSenseEngine": "disabled",
   "C_Cpp.formatting": "disabled",

@@ -1,0 +1,8 @@
+CompileFlags:
+  Add:
+    - -Iinclude
+    - -Iinclude/nn
+    - -std=c++23
+
+Diagnostics:
+  UnusedIncludes: None
