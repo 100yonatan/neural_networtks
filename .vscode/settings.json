@@ -8,13 +8,16 @@
     "--compile-commands-dir=${workspaceFolder}/build/debug",
     "--clang-tidy=false",
     "--header-insertion=never",
-    "--fallback-flags=-std=c++23"
+    "--query-driver=**"
+  ],
+  "clangd.fallbackFlags": [
+    "-std=c++23"
   ],
   "C_Cpp.intelliSenseEngine": "disabled",
   "C_Cpp.formatting": "disabled",
-  "clang-format.executable": "${env.LOCALAPPDATA}/mise/shims/clang-format.exe",
+  "clang-format.executable": "${env:LOCALAPPDATA}/mise/shims/clang-format.exe",
   "clang-format.style": "file",
-  "clang-tidy.executable": "${env.LOCALAPPDATA}/mise/shims/clang-tidy.exe",
+  "clang-tidy.executable": "${env:LOCALAPPDATA}/mise/shims/clang-tidy.exe",
   "clang-tidy.buildPath": "${workspaceFolder}",
   "clang-tidy.lintOnSave": true,
   "files.associations": { "*.h": "cpp" },
